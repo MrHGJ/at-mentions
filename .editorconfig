@@ -1,0 +1,24 @@
+# 统一编辑器风格
+# 跨编辑器维护一致编码风格的配置文件
+
+root = true
+
+[*]
+# 编码格式
+charset = utf-8
+end_of_line = lf
+# 缩进两个空格
+indent_size = 2
+indent_style = space
+# 去除多余空格
+trim_trailing_whitespace = true
+# 在代码尾部插入一行
+insert_final_newline = true
+
+[*.json]
+insert_final_newline = false
+
+[*.md]
+indent_size = 4
+# 因为 markdown 语法中，我想要换行需要在上一行多打 2 个以上的空格，为了不影响该语法，故 .md 文件中把去除多余空格关掉了。
+trim_trailing_whitespace = false

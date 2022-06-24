@@ -1,0 +1,25 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env", //支持es6+语法
+      {
+        // 防止babel将任何模块类型都转译成CommonJS类型，导致tree-shaking失效问题
+        "modules": false
+      }
+    ],
+    "@babel/preset-react", //支持react语法
+    "@babel/preset-typescript" //支持ts语法
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime", //支持新的es特性
+      {
+        "corejs": {
+          "version": 3,
+          "proposals": true
+        },
+        "useESModules": true
+      }
+    ]
+  ]
+}
