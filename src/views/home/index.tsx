@@ -1,12 +1,14 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import { AtMentions } from '@/components/at-mentions'
 import './index.scss'
 
 function Home() {
   const history = useHistory()
   return (
     <div className='home'>
-      这是首页
+      <div>@编辑器demo:</div>
+      <AtMentions />
       <div
         className='button'
         onClick={() => {

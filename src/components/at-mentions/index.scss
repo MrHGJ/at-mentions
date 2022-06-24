@@ -1,0 +1,32 @@
+.at-mentions {
+  position: relative;
+  font-size: 14px;
+  background-color: #f7f7f7;
+  border: 2px solid #f7f7f7;
+  border-radius: 6px;
+  transition: border 0.3s, background-color 0.3s;
+  caret-color: #0d84ff;
+  word-break: break-all;
+
+  &:hover {
+    border: 2px solid rgba(13, 132, 255, 0.6);
+  }
+
+  &:focus-within {
+    background-color: #fff;
+    border: 2px solid rgba(13, 132, 255, 0.6);
+    outline: none;
+  }
+
+  &__input {
+    padding: 12px;
+    line-height: 22px;
+    border: none;
+    //处理enter键换行生成新的div、破坏子节点结构的问题
+    display: inline-block;
+    white-space: pre-wrap;
+    //去掉聚焦时的边框展示
+    outline: none;
+    width: 100%;
+  }
+}
