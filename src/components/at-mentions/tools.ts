@@ -84,7 +84,7 @@ export const getSelectionCoords = () => {
   return { x: x, y: y }
 }
 
-// 通过关键词搜索用户列表
+// 通过关键词搜索用户列表。模拟搜索人员。
 export const fetchUsers = async (
   searchKey: string,
   callback: { (data: any): void; (arg0: IPerson[]): void },
@@ -92,9 +92,70 @@ export const fetchUsers = async (
   // 随机头像api，https://api.sunweihu.com/api/sjtx/api.php?lx=c1
   const testData: IPerson[] = [
     {
+      userId: 'asan',
+      userName: '阿三',
+      avatar: 'https://tva4.sinaimg.cn/large/9bd9b167ly1fzjxzbgbllj20b40b4mxw.jpg',
+    },
+    {
+      userId: 'baobo',
+      userName: '鲍勃',
+      avatar: 'https://tva1.sinaimg.cn/large/9bd9b167ly1fzjxz5x8zcj20b40b4wf4.jpg',
+    },
+    {
+      userId: 'chensheng',
+      userName: '陈胜',
+      avatar: 'https://tva1.sinaimg.cn/large/9bd9b167ly1g1p9vxh0fyj20b40b4js1.jpg',
+    },
+    {
+      userId: 'chengliang',
+      userName: '程亮',
+      avatar: 'https://tva2.sinaimg.cn/large/9bd9b167ly1fzjxza79dzj20b40b4aas.jpg',
+    },
+    {
+      userId: 'chenguang',
+      userName: '程光',
+      avatar: 'https://tva1.sinaimg.cn/large/9bd9b167ly1g1p9ah89uzj20b40b4aak.jpg',
+    },
+    {
+      userId: 'huba',
+      userName: '胡巴',
+      avatar: 'https://tva2.sinaimg.cn/large/9bd9b167ly1fzjxz1srltj20b40b4js0.jpg',
+    },
+    {
       userId: 'lisi',
       userName: '李四',
       avatar: 'https://tva1.sinaimg.cn/large/9bd9b167ly1fzjxys7prej20b40b4gm5.jpg',
+    },
+    {
+      userId: 'likui',
+      userName: '李逵',
+      avatar: 'https://tva1.sinaimg.cn/large/9bd9b167ly1fzjxyzdbd3j20b40b474v.jpg',
+    },
+    {
+      userId: 'lizhaodi',
+      userName: '李招娣',
+      avatar: 'https://tva4.sinaimg.cn/large/9bd9b167ly1g1p9q7gsksj20b40b4aaq.jpg',
+    },
+
+    {
+      userId: 'liguang',
+      userName: '李广',
+      avatar: 'https://tva1.sinaimg.cn/large/9bd9b167ly1g1p9ah89uzj20b40b4aak.jpg',
+    },
+    {
+      userId: 'liyuanfang',
+      userName: '李元芳',
+      avatar: 'https://tva4.sinaimg.cn/large/9bd9b167ly1fzjxz6gmitj20b40b4js2.jpg',
+    },
+    {
+      userId: 'lidazhao',
+      userName: '李大钊',
+      avatar: 'https://tva1.sinaimg.cn/large/9bd9b167ly1fzjxyi8a55j20b40b4mxm.jpg',
+    },
+    {
+      userId: 'libai',
+      userName: '李白',
+      avatar: 'https://tva4.sinaimg.cn/large/9bd9b167ly1g1p9pgxgrcj20b40b4glx.jpg',
     },
     {
       userId: 'wangwu',
@@ -107,7 +168,8 @@ export const fetchUsers = async (
       avatar: 'https://tva4.sinaimg.cn/large/9bd9b167gy1g1p9vnmuuoj20b40b4dg2.jpg',
     },
   ]
-
-  const userList: IPerson[] = testData.filter((item) => item.userId.includes(searchKey))
+  const userList: IPerson[] = testData.filter(
+    (item) => item.userId.startsWith(searchKey) || item.userName.startsWith(searchKey),
+  )
   callback(userList)
 }
