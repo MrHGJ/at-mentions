@@ -75,6 +75,7 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@types/react-router-dom": "^5.3.2",
+    "classnames": "^2.3.1",
     "husky": "^4.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
