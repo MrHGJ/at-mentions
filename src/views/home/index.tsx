@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import { AtMentions } from '@/components/at-mentions'
 import './index.scss'
 import { IMention } from '@/components/at-mentions/types'
@@ -12,7 +11,8 @@ function Home() {
     <div className='home'>
       {/* @编辑器部分 */}
       <div>
-        <div className='home__title'>@编辑器输入框：</div>
+        <div className='home__title'>@编辑器：</div>
+        <div className='home__tip'>「输入@字符弹出人员搜索选择」</div>
         <AtMentions
           className='home__editor'
           value={pureString}
@@ -27,7 +27,8 @@ function Home() {
       </div>
       {/* 结果展示部分 */}
       <div style={{ marginLeft: '35px' }}>
-        <div className='home__title'>结果展示：</div>
+        <div className='home__title'>文本展示：</div>
+        <div className='home__tip'>「点击@人员展示个人卡片」</div>
         <AtMentionsPreview
           className='home__preview'
           pureString={pureString}

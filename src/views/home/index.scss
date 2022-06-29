@@ -4,12 +4,19 @@
 
   &__title {
     font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  &__tip {
+    font-size: 14px;
+    color: #999;
     margin-bottom: 20px;
   }
 
   &__editor {
     width: 500px;
   }
+
   &__preview {
     width: 500px;
   }
