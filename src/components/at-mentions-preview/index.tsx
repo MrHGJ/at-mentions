@@ -66,10 +66,11 @@ export const AtMentionsPreview = (props: IProps) => {
   }, [mentions, pureString])
 
   const renderPersonCard = () => {
-    if (!(curPersonId && curPersonId.length > 0)) {
+    if (!(curPersonId && curPersonId.length > 0 && curPersonInfo.current)) {
       return null
     }
     const { x, y } = document.getElementById(curPersonId)?.getBoundingClientRect()
+    const { userId, userName, avatar } = curPersonInfo.current
     return (
       <div
         className={cls('card-mask', { 'card-mask--hide': !showCard })}
@@ -79,9 +80,17 @@ export const AtMentionsPreview = (props: IProps) => {
       >
         <div
           className={cls('card-content', { 'card-content--hide': !showCard })}
-          style={{ top: `${y + 26}px`, left: `${x}px` }}
+          style={{ top: `${Number(y) + 26}px`, left: `${Number(x)}px` }}
         >
-          {curPersonInfo.current?.userName}
+          <div className='card-content__header'>
+            <img className='card-content__header__avatar' src={avatar} />
+            <div className='card-content__header__mask' />
+            <div className='card-content__header__name'>{userName}</div>
+            <div className='card-content__header__id'>{userId}</div>
+          </div>
+          <div className='card-content__item'>电话： 123456789</div>
+          <div className='card-content__item'>地址： 湖北省武汉市洪山区</div>
+          <div className='card-content__item'>跳转个人主页</div>
         </div>
       </div>
     )

@@ -29,9 +29,10 @@
 
     .card-content {
       position: absolute;
-      width: 80px;
-      height: 180px;
+      width: 284px;
       background: #fff;
+      box-shadow: 0px 8px 16px 6px rgba(31, 39, 51, 0.12);
+      border-radius: 6px;
       transition: all 0.15s;
       transform: scale(1, 1);
       transform-origin: 0 0;
@@ -39,6 +40,85 @@
       &--hide {
         transform: scale(0, 0);
         visibility: hidden;
+      }
+
+      &__header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 236px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+
+        &__avatar {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-top-left-radius: 6px;
+          border-top-right-radius: 6px;
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: #f8f9fa;
+          }
+        }
+
+        &__mask {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          opacity: .5;
+          background-image: linear-gradient(-180deg, rgba(31, 35, 41, 0), #000);
+          transition: all .2s ease;
+          pointer-events: none;
+          border-top-left-radius: 6px;
+          border-top-right-radius: 6px;
+        }
+
+        &__name {
+          position: absolute;
+          bottom: 40px;
+          left: 24px;
+          font-size: 24px;
+          font-weight: 500;
+          color: #fff;
+          line-height: 34px;
+        }
+
+        &__id {
+          position: absolute;
+          bottom: 12px;
+          left: 24px;
+          font-size: 14px;
+          color: #fff;
+          line-height: 20px;
+        }
+      }
+
+      &__item {
+        display: flex;
+        align-items: center;
+        margin: 8px 0;
+        padding: 10px 0 10px 16px;
+        box-sizing: border-box;
+        font-size: 14px;
+        color: #1F2733;
+        line-height: 20px;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover {
+          background: #F2F4F7;
+        }
       }
     }
   }
