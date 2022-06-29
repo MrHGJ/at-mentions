@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { IMention } from '../at-mentions/types'
+import cls from 'classnames'
 import './index.scss'
 
 interface IProps {
@@ -15,6 +16,9 @@ interface IMentionData {
 }
 export const AtMentionsPreview = (props: IProps) => {
   const { pureString, mentions = [], className = '', minHeight = -1 } = props
+  const [showCard, setShowCard] = useState(false)
+  const curPersonInfo = useRef<IMention>()
+  const [curPersonId, setCurPersonId] = useState('')
 
   const formatMentionsData = useMemo(() => {
     // 按照 at 开始位置排序
@@ -61,20 +65,60 @@ export const AtMentionsPreview = (props: IProps) => {
     return result
   }, [mentions, pureString])
 
-  const renderView = (data: IMentionData) => {
+  const renderPersonCard = () => {
+    if (!(curPersonId && curPersonId.length > 0)) {
+      return null
+    }
+    const { x, y } = document.getElementById(curPersonId)?.getBoundingClientRect()
+    return (
+      <div
+        className={cls('card-mask', { 'card-mask--hide': !showCard })}
+        onClick={() => {
+          setShowCard(false)
+        }}
+      >
+        <div
+          className={cls('card-content', { 'card-content--hide': !showCard })}
+          style={{ top: `${y + 26}px`, left: `${x}px` }}
+        >
+          {curPersonInfo.current?.userName}
+        </div>
+      </div>
+    )
+  }
+
+  const renderPreview = (data: IMentionData, index: number) => {
     const { mention, content } = data
     if (!mention) {
-      return <span>{content}</span>
+      return <span key={index}>{content}</span>
     } else {
-      return <span className='at-mentions-preview__mention'>{content}</span>
+      const curId = `${mention.userId}${index}`
+      return (
+        <span
+          id={curId}
+          className='at-mentions-preview__mention'
+          onClick={() => {
+            curPersonInfo.current = mention
+            setCurPersonId(curId)
+            setTimeout(() => {
+              setShowCard(true)
+            }, 100)
+          }}
+          key={index}
+        >
+          {content}
+        </span>
+      )
     }
   }
+
   return (
     <div
       className={`at-mentions-preview ${className}`}
       style={{ minHeight: minHeight > 0 ? minHeight : 'auto' }}
     >
-      {formatMentionsData.map(renderView)}
+      {formatMentionsData.map(renderPreview)}
+      {renderPersonCard()}
     </div>
   )
 }

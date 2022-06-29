@@ -10,6 +10,7 @@ function Home() {
   const [mentionList, setMentionList] = useState<IMention[]>([])
   return (
     <div className='home'>
+      {/* @编辑器部分 */}
       <div>
         <div className='home__title'>@编辑器输入框：</div>
         <AtMentions
@@ -24,7 +25,8 @@ function Home() {
           placeholder='请输入文本'
         />
       </div>
-      <div style={{ marginLeft: '25px' }}>
+      {/* 结果展示部分 */}
+      <div style={{ marginLeft: '35px' }}>
         <div className='home__title'>结果展示：</div>
         <AtMentionsPreview
           className='home__preview'
