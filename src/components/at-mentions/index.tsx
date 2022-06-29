@@ -67,7 +67,10 @@ export const AtMentions = (props: IProps) => {
         const btn = document.createElement('button')
         btn.dataset.person = JSON.stringify(item.data)
         btn.textContent = `@${item.data.userName}`
-        btn.setAttribute('style', 'color:#4387f4;border:none;background:transparent;padding:0')
+        btn.setAttribute(
+          'style',
+          'color:#4387f4;border:none;background:transparent;padding:0;font-size:16px',
+        )
         btn.contentEditable = 'false'
         btn.addEventListener(
           'click',
@@ -265,7 +268,10 @@ export const AtMentions = (props: IProps) => {
         const btn = document.createElement('button')
         btn.dataset.person = JSON.stringify(personItem)
         btn.textContent = `@${personItem.userName}`
-        btn.setAttribute('style', 'color:#4387f4;border:none;background:transparent;padding:0')
+        btn.setAttribute(
+          'style',
+          'color:#4387f4;border:none;background:transparent;padding:0;font-size:16px',
+        )
         btn.contentEditable = 'false'
         btn.addEventListener(
           'click',
@@ -451,7 +457,7 @@ export const AtMentions = (props: IProps) => {
       )}
       {/* placeholder展示 */}
       {!(inputStr && inputStr.length > 0 && inputStr !== '\n') && placeholder.length > 0 && (
-        <div className='at-editor__placeholder'>{placeholder}</div>
+        <div className='at-mentions__placeholder'>{placeholder}</div>
       )}
     </div>
   )

@@ -1,0 +1,14 @@
+.at-mentions-preview {
+  font-size: 16px;
+  background-color: #f7f7f7;
+  border-radius: 6px;
+  word-break: break-all;
+  white-space: pre-wrap;
+  box-sizing: border-box;
+  padding: 12px;
+  line-height: 22px;
+
+  &__mention {
+    color: #0d84ff;
+  }
+}

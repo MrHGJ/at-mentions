@@ -1,7 +1,7 @@
 .at-mentions {
   position: relative;
-  font-size: 14px;
-  background-color: #f7f7f7;
+  font-size: 16px;
+  background-color: #fff;
   border: 2px solid #f7f7f7;
   border-radius: 6px;
   transition: border 0.3s, background-color 0.3s;
@@ -19,6 +19,7 @@
   }
 
   &__editor {
+    box-sizing: border-box;
     padding: 12px;
     line-height: 22px;
     border: none;
