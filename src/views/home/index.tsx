@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { AtMentions } from '@/components/at-mentions'
-import './index.scss'
 import { IMention } from '@/components/at-mentions/types'
 import { AtMentionsPreview } from '@/components/at-mentions-preview'
+import './index.scss'
 
 function Home() {
   const [pureString, setPureString] = useState('')
