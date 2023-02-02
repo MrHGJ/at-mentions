@@ -6,7 +6,7 @@ export const getEditorRange = () => {
   let selection = null
   if (window.getSelection) {
     selection = window.getSelection()
-    if (selection && selection.getRangeAt && selection.rangeCount) {
+    if (selection && selection.getRangeAt) {
       range = selection.getRangeAt(0)
       return {
         range,
