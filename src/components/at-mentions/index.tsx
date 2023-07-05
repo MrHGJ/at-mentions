@@ -194,6 +194,23 @@ export const AtMentions = (props: IProps) => {
     const rangeInfo = getEditorRange()
     if (!rangeInfo || !rangeInfo.range || !rangeInfo.selection) return
     const curNode = rangeInfo.range.endContainer
+    // 处理文本结尾是@人员Button并且没有任何字符的情况
+    // 如果光标超出编辑器，则选中最后一个子元素
+    if (curNode.nodeName === 'DIV') {
+      const { childNodes } = curNode
+      const childNodesToArray = [].slice.call(childNodes)
+      const notEmptyNodes = childNodesToArray.filter(
+        (item: Node) => !(item.nodeName === '#text' && item.textContent === ''),
+      )
+      if (notEmptyNodes.length > 0) {
+        const lastChildNode: Node = notEmptyNodes[notEmptyNodes.length - 1]
+        if (lastChildNode && lastChildNode?.nodeName === 'BUTTON') {
+          document.execCommand('insertHTML', false, '\n')
+          // rangeInfo.range.setStartBefore(lastChildNode)
+          // rangeInfo.range.setEndAfter(lastChildNode)
+        }
+      }
+    }
     if (!curNode || !curNode.textContent || curNode.nodeName !== '#text') return
     const searchStr = curNode.textContent.slice(0, rangeInfo.selection.focusOffset)
     // 判断光标位置前方是否有at，只有一个at则展示默认dialog，除了at还有关键字则展示searchDialog
