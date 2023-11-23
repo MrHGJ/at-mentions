@@ -1,22 +1,32 @@
 import { IPerson } from './types'
 
-// 获取当前光标选取的信息（即在弹出选人之前，把输入框中此刻的光标位置先记下来）
+/**
+ * 获取当前光标选区的信息。
+ * @returns {Object|null} 包含光标选区和选择对象的对象，如果没有选区，则返回 null。
+ */
 export const getEditorRange = () => {
   let range = null
   let selection = null
+  // 检查浏览器是否支持 window.getSelection
   if (window.getSelection) {
+    // 获取选区对象
     selection = window.getSelection()
-    if (selection && selection.getRangeAt) {
+    // 检查是否有选区
+    if (selection && selection.rangeCount > 0) {
+      // 获取第一个选区
       range = selection.getRangeAt(0)
-      return {
-        range,
-        selection,
-      }
     } else {
+      // 没有选区，返回 null
       return null
     }
   } else {
+    // 不支持 window.getSelection，返回 null
     return null
+  }
+  // 返回包含光标选区和选择对象的对象
+  return {
+    range,
+    selection,
   }
 }
 

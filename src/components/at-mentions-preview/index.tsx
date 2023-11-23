@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { IMention } from '../at-mentions/types'
 import cls from 'classnames'
 import './index.scss'
@@ -19,6 +19,13 @@ export const AtMentionsPreview = (props: IProps) => {
   const [showCard, setShowCard] = useState(false)
   const curPersonInfo = useRef<IMention>()
   const [curPersonId, setCurPersonId] = useState('')
+  const { x: cardX, y: cardY } = useMemo(() => {
+    if (curPersonId) {
+      return document.getElementById(curPersonId)?.getBoundingClientRect()
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }, [curPersonId])
 
   const formatMentionsData = useMemo(() => {
     // 按照 at 开始位置排序
@@ -65,11 +72,10 @@ export const AtMentionsPreview = (props: IProps) => {
     return result
   }, [mentions, pureString])
 
-  const renderPersonCard = () => {
+  const renderPersonCard = useCallback(() => {
     if (!(curPersonId && curPersonId.length > 0 && curPersonInfo.current)) {
       return null
     }
-    const { x, y } = document.getElementById(curPersonId)?.getBoundingClientRect()
     const { userId, userName, avatar } = curPersonInfo.current
     return (
       <div
@@ -80,7 +86,7 @@ export const AtMentionsPreview = (props: IProps) => {
       >
         <div
           className={cls('card-content', { 'card-content--hide': !showCard })}
-          style={{ top: `${Number(y) + 26}px`, left: `${Number(x)}px` }}
+          style={{ top: `${Number(cardY) + 26}px`, left: `${Number(cardX)}px` }}
         >
           <div className='card-content__header'>
             <img className='card-content__header__avatar' src={avatar} />
@@ -94,7 +100,7 @@ export const AtMentionsPreview = (props: IProps) => {
         </div>
       </div>
     )
-  }
+  }, [cardX, cardY, curPersonId, showCard])
 
   const renderPreview = (data: IMentionData, index: number) => {
     const { mention, content } = data
