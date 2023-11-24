@@ -1,5 +1,10 @@
 import { IPerson } from './types'
 
+const isSafari = () => {
+  const userAgent = navigator.userAgent.toLowerCase()
+  return userAgent.includes('applewebkit') && !userAgent.includes('chrome')
+}
+
 /**
  * 获取当前光标选区的信息。
  * @returns {Object|null} 包含光标选区和选择对象的对象，如果没有选区，则返回 null。
@@ -7,23 +12,24 @@ import { IPerson } from './types'
 export const getEditorRange = () => {
   let range = null
   let selection = null
-  // 检查浏览器是否支持 window.getSelection
   if (window.getSelection) {
     // 获取选区对象
     selection = window.getSelection()
-    // 检查是否有选区
-    if (selection && selection.rangeCount > 0) {
-      // 获取第一个选区
-      range = selection.getRangeAt(0)
-    } else {
-      // 没有选区，返回 null
+    if (!selection) {
       return null
     }
+    // 对于 Safari，直接获取第一个选区
+    if (isSafari()) {
+      range = selection.getRangeAt(0)
+    } else {
+      // 对于其他浏览器，检查 rangeCount 是否大于 0
+      if (selection.rangeCount > 0) {
+        range = selection.getRangeAt(0)
+      }
+    }
   } else {
-    // 不支持 window.getSelection，返回 null
     return null
   }
-  // 返回包含光标选区和选择对象的对象
   return {
     range,
     selection,
