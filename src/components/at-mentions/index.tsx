@@ -8,7 +8,7 @@ import {
   transformNodeListToMentionData,
 } from './types'
 import cls from 'classnames'
-import { fetchUsers, getSelectionCoords, getEditorRange, resetRange } from './tools'
+import { fetchUsers, getSelectionCoords, getEditorRange } from './tools'
 import './index.scss'
 interface IProps {
   value: string
@@ -454,7 +454,7 @@ export const AtMentions = (props: IProps) => {
         onInput={onInputText}
       ></div>
       {/* 人员选择对话框 */}
-      {showDialog && (
+      {showDialog && dialogPosition.x > 0 && (
         <div
           id='at-mentions-dialog'
           className='at-mentions__dialog'
