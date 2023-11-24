@@ -69,7 +69,7 @@ export const AtMentions = (props: IProps) => {
         btn.textContent = `@${item.data.userName}`
         btn.setAttribute(
           'style',
-          'color:#4387f4;border:none;background:transparent;padding:0;font-size:16px',
+          'color:#4387f4;border:none;background:transparent;padding:0;font-size:inherit',
         )
         btn.contentEditable = 'false'
         btn.addEventListener(
@@ -287,7 +287,7 @@ export const AtMentions = (props: IProps) => {
         btn.textContent = `@${personItem.userName}`
         btn.setAttribute(
           'style',
-          'color:#4387f4;border:none;background:transparent;padding:0;font-size:16px',
+          'color:#4387f4;border:none;background:transparent;padding:0;font-size:inherit',
         )
         btn.contentEditable = 'false'
         btn.addEventListener(
