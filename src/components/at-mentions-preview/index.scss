@@ -1,5 +1,5 @@
 .at-mentions-preview {
-  font-size: 16px;
+  font-size: 14px;
   background-color: #f7f7f7;
   border-radius: 6px;
   word-break: break-all;
@@ -76,9 +76,9 @@
           top: 0;
           width: 100%;
           height: 100%;
-          opacity: .5;
+          opacity: 0.5;
           background-image: linear-gradient(-180deg, rgba(31, 35, 41, 0), #000);
-          transition: all .2s ease;
+          transition: all 0.2s ease;
           pointer-events: none;
           border-top-left-radius: 6px;
           border-top-right-radius: 6px;
@@ -111,13 +111,13 @@
         padding: 10px 0 10px 16px;
         box-sizing: border-box;
         font-size: 14px;
-        color: #1F2733;
+        color: #1f2733;
         line-height: 20px;
         // border-radius: 4px;
         cursor: pointer;
 
         &:hover {
-          background: #F2F4F7;
+          background: #f2f4f7;
         }
       }
     }
